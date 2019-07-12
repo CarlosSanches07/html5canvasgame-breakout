@@ -4,15 +4,16 @@ window.onload = function() {
     const canvas = document.getElementById("context");
     const context = canvas.getContext("2d");
     
+    const getRandom = (min, max) => Math.floor(Math.random() * (max - min)) + min
     //building the ball
     const Ball = {
         position: {
-            x: canvas.width/2,
+            x: getRandom(10 , canvas.width-10),
             y: canvas.height-30
         },
         radius: 10,
         speed: {
-            x: 1,
+            x:  getRandom(1,10)%2 === 0 ? 1 : -1,
             y: -1
         },
         sprite: "#0095DD",
@@ -178,8 +179,7 @@ window.onload = function() {
         Tips.draw();
         checkCollision();
         Ball.move();
-        requestAnimationFrame(draw)
-
+        requestAnimationFrame(draw);
     }
 
     const keyDownHandler = function(evt) {
